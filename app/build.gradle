@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "net.taplog.fragmentreplacetestproject"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+        }
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // version 26.1.0 works (change compile version above to 26 to use it)
+    //implementation "com.android.support:appcompat-v7:26.1.0"
+    implementation "com.android.support:appcompat-v7:27.0.2"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    // espresso core uses wrong version of findbugs, so force the latest version
+    // https://stackoverflow.com/questions/37347326/errorconflict-with-dependency-com-google-code-findbugsjsr305
+    implementation 'com.google.code.findbugs:jsr305:3.0.1'
+
+}
